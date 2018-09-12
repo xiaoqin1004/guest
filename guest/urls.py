@@ -14,10 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
 from django.urls.converters import SlugConverter
 from sign import views
-from django.urls import register_converter, path
+from django.urls import register_converter, path, include
 register_converter(SlugConverter, 'eid')
 
 
@@ -32,4 +31,5 @@ urlpatterns = [
     path('logout/', views.logout),
     path('sign_index/<eid:eid>/', views.sign_index),
     path('sign_index_action/<eid:eid>/', views.sign_index_action),
+    path('api/', include('sign.urls'))
 ]
